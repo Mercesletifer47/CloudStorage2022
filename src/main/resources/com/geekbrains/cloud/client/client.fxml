@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.embed.swing.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="514.0" prefWidth="740.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-           fx:controller="com.geekbrains.cloud.client.ClientController">
-   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="513.0" prefWidth="366.0">
-      <VBox prefHeight="513.0" prefWidth="366.0">
-         <ListView fx:id="listViewClient" prefHeight="480.0" prefWidth="366.0"/>
-         <TextField fx:id="textFieldClient" onAction="#sendMessageToServer" prefHeight="48.0" prefWidth="366.0"/>
-      </VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="198.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekbrains.cloud.client.ClientController">
+   <HBox fx:id="authorization" alignment="CENTER" focusTraversable="true" layoutX="28.0" layoutY="301.0" prefHeight="25.0" prefWidth="519.0" VBox.vgrow="ALWAYS" />
+
+   <AnchorPane fx:id="mainBox" visible="false">
+      <Label fx:id="clientPath" layoutX="10.0" layoutY="85.0" text="Label" />
+      <ListView fx:id="clientView" layoutX="10.0" layoutY="101.0" prefHeight="489.0" prefWidth="250.0" />
+      <Label fx:id="serverPath" layoutX="269.0" layoutY="85.0" text="Label" />
+      <ListView fx:id="serverView" layoutX="269.0" layoutY="101.0" prefHeight="489.0" prefWidth="250.0" />
+      <Label fx:id="clientLabel" layoutX="10.0" layoutY="590.0" text="Label" />
+      <Label fx:id="serverLabel" layoutX="269.0" layoutY="590.0" text="Label" />
+      <HBox prefHeight="25.0" prefWidth="519.0">
+         <Button fx:id="clientUp" mnemonicParsing="false" onAction="#toParentClientDir" text="UP" HBox.hgrow="ALWAYS" />
+         <Button fx:id="download" mnemonicParsing="false" onAction="#download" text="Скачать" HBox.hgrow="ALWAYS" />
+         <Button fx:id="serverUp" layoutX="269.0" mnemonicParsing="false" onAction="#toParentServerDir" text="UP" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="180" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="upload" mnemonicParsing="false" onAction="#upload" text="Загрузить" HBox.hgrow="ALWAYS" />
+      </HBox>
    </AnchorPane>
-   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-      <VBox prefHeight="513.0" prefWidth="366.0">
-         <ListView fx:id="listViewServer" prefHeight="480.0" prefWidth="366.0"/>
-         <TextField fx:id="textFieldServer" onAction="#sendMessageToClient" prefHeight="48.0" prefWidth="366.0"/>
-      </VBox>
-   </AnchorPane>
-</SplitPane>
+   <SwingNode layoutX="97.0" layoutY="417.0" />
+   <Button alignment="CENTER" focusTraversable="false" layoutX="28.0" layoutY="82.0" onAction="#tryToAuth" prefHeight="25.0" prefWidth="149.0" text="Вход" />
+   <PasswordField fx:id="passwordField" alignment="CENTER" focusTraversable="false" layoutX="28.0" layoutY="49.0" prefHeight="25.0" prefWidth="149.0" promptText="Пароль" />
+   <TextField fx:id="loginField" alignment="CENTER" focusTraversable="false" layoutX="28.0" layoutY="14.0" promptText="Логин" />
+</AnchorPane>
